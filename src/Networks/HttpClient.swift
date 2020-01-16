@@ -7,12 +7,12 @@ final class HttpClient {
 	static func call<T, V>(_ request: T, completion: @escaping (APIResult) -> Void)
         where T: BaseRequestProtocol, V: Codable, T.ResponseType == V {
         	
-			let task = URLSession.shared.dataTask(with: request.asURLRequest) { data, response, error in
-				if let data = data {
-					completion(decodeData(request, data))
-				} else {
-					completion(.failure(error ?? ResponseError()))
-				}
+	        let task = URLSession.shared.dataTask(with: request.asURLRequest) { data, response, error in
+	        	if let data = data {
+	        		completion(decodeData(request, data))
+	        	} else {
+	        		completion(.failure(error ?? ResponseError()))
+	        	}
 	        }
 	        task.resume()
     }
@@ -74,7 +74,7 @@ struct HTTPMethod: RawRepresentable, Equatable, Hashable {
     static let put = HTTPMethod(rawValue: "PUT")
     static let trace = HTTPMethod(rawValue: "TRACE")
     
-	let rawValue: String
+    let rawValue: String
 
     init(rawValue: String) {
         self.rawValue = rawValue
