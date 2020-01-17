@@ -7,12 +7,12 @@ final class HttpClient {
 	static func call<T, V>(_ request: T, completion: @escaping (APIResult) -> Void)
         where T: BaseRequestProtocol, V: Codable, T.ResponseType == V {
         	
-			let task = URLSession.shared.dataTask(with: request.asURLRequest) { data, response, error in
-				if let data = data {
-					completion(decodeData(request, data))
-				} else {
+	        let task = URLSession.shared.dataTask(with: request.asURLRequest) { data, response, error in
+	        	if let data = data {
+	        		completion(decodeData(request, data))
+	        	} else {
 					completion(.failure(error ?? ResponseError(description: "")))
-				}
+	        	}
 	        }
 	        task.resume()
     }
