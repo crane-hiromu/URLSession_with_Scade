@@ -12,6 +12,7 @@ struct SpeakersRequest: BaseRequestProtocol {
 
     var path: String {
         return "/speakers"
+//		return "/bins/f93xy"
     }
 
     var parameters: Parameters? {

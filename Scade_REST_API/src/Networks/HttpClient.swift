@@ -11,7 +11,7 @@ final class HttpClient {
 	        	if let data = data {
 	        		completion(decodeData(request, data))
 	        	} else {
-	        		completion(.failure(error ?? ResponseError()))
+					completion(.failure(error ?? ResponseError(description: "")))
 	        	}
 	        }
 	        task.resume()
@@ -23,7 +23,7 @@ final class HttpClient {
             if let result = try? JSONDecoder(type: .convertFromSnakeCase).decode(V.self, from: data) {
                 return .success(result)
             } else {
-                return .failure(DecodeError(dataContents: String(data: data, encoding: .utf8)))
+                return .failure(DecodeError(description: String(data: data, encoding: .utf8)))
             }
     }
 }
@@ -38,13 +38,19 @@ enum APIResult {
 // MARK: - Error
 
 struct ResponseError: Error, CustomStringConvertible {
-    let description: String = "-- Response Error --"
-    var dataContents: String?
+    let description: String
+        
+    init(description: String?) {
+    	 self.description = "-- Response Error -- \(description ?? "none")"
+    }
 }
 
 struct DecodeError: Error, CustomStringConvertible {
-    let description: String = "-- Decode Error --"
-    var dataContents: String?
+    let description: String
+    
+    init(description: String?) {
+    	 self.description = "-- Decode Error -- \(description ?? "none")"
+    }
 }
 
 // MARK: - JSONDecoder Extension
@@ -74,7 +80,7 @@ struct HTTPMethod: RawRepresentable, Equatable, Hashable {
     static let put = HTTPMethod(rawValue: "PUT")
     static let trace = HTTPMethod(rawValue: "TRACE")
     
-    let rawValue: String
+	let rawValue: String
 
     init(rawValue: String) {
         self.rawValue = rawValue

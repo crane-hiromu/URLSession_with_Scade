@@ -16,7 +16,7 @@ class MainPageAdapter: SCDLatticePageAdapter {
 			}
 		}
 		
-		testDecode()
+		// testDecode()
 	}
 }
 

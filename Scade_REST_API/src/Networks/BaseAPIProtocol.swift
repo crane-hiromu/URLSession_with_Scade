@@ -18,7 +18,7 @@ extension BaseAPIProtocol {
     }
     var headers: Headers? {
 		return [
-			"Content-Type": "application/x-www-form-urlencoded; charset=utf-8"
+			"Content-Type": "application/json; charset=utf-8"
 		]
     }
 }

@@ -74,7 +74,7 @@ android:
   build-type: Debug
   key-store-properties:
   google-api-key: 
-  manifest-file:
+  manifest-file: ~/Scade/URLSession_with_Scade/Scade_REST_API/AndroidManifest.xml
   permissions: []
   armeabi-v7a:
     output: Scade_REST_API/.build/android-armeabi-v7a
