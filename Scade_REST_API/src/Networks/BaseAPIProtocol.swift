@@ -17,9 +17,10 @@ extension BaseAPIProtocol {
     	return URL(string: Constants.API.baseURL)!
     }
     var headers: Headers? {
-		return [
-			"Content-Type": "application/json; charset=utf-8"
-		]
+        return [
+            "Content-Type": "application/json; charset=utf-8",
+            "User-Agent": "official-app-2020/1.0 gzip"
+        ]
     }
 }
 
@@ -37,12 +38,12 @@ extension BaseRequestProtocol {
             let url = baseURL.appendingPathComponent(path)
         	guard let params = parameters else { return URLRequest(url: url) }                           
 
-			// todo post
+            // todo post
 			
-			// get
-			var compnents = URLComponents(string: url.absoluteString)
-			compnents?.queryItems = params.map { URLQueryItem(name: $0, value: "\($1)") }
-			return URLRequest(url: compnents!.url!)
+            // get
+            var compnents = URLComponents(string: url.absoluteString)
+            compnents?.queryItems = params.map { URLQueryItem(name: $0, value: "\($1)") }
+            return URLRequest(url: compnents!.url!)
         }()
         urlRequest.httpMethod = method.rawValue
         urlRequest.allHTTPHeaderFields = headers

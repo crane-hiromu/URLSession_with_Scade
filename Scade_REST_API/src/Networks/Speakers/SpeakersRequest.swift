@@ -4,15 +4,14 @@ import Foundation
 
 struct SpeakersRequest: BaseRequestProtocol {
 	
-	typealias ResponseType = [Speaker]
+    typealias ResponseType = [Speaker]
 
     var method: HTTPMethod {
         return .get
     }
 
     var path: String {
-        return "/speakers"
-//		return "/bins/f93xy"
+        return "speakers/"
     }
 
     var parameters: Parameters? {
