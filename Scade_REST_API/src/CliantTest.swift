@@ -1,4 +1,5 @@
 import ScadeKit
+import Foundation
 
 class CliantTest {
     
@@ -37,9 +38,8 @@ class CliantTest {
         let task = session.dataTask(with:request,completionHandler: { data, response, error in
             print(data, response, error.debugDescription, error?.localizedDescription)
             
-            if let d = data {
-                let str = String(data: d, encoding: .utf8)
-                print("----data", data, d)
+            if let d = data, let result = try? JSONDecoder(type: .convertFromSnakeCase).decode([Speaker].self, from: d) {
+                print("----result", result)
             }
         })
         task.resume()
