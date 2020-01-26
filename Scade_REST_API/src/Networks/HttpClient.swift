@@ -4,7 +4,7 @@ import Foundation
 
 final class HttpClient {
 		
-	static func call<T, V>(_ request: T, completion: @escaping (APIResult) -> Void)
+    static func call<T, V>(_ request: T, completion: @escaping (APIResult) -> Void)
         where T: BaseRequestProtocol, V: Codable, T.ResponseType == V {
         	
             let task = URLSession.shared.dataTask(with: request.asURLRequest) { data, response, error in
